@@ -1,9 +1,12 @@
 ---
-title: "Data Types"
-output: html_notebook
+title: "Data types"
 ---
 
-<!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
+<!-- 
+This file Creative Commons Attribution 4.0 International License. 
+See details at https://github.com/hadley/data-science-in-tidyverse 
+-->
+
 
 ```{r setup}
 library(tidyverse)

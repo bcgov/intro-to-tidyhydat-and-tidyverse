@@ -1,9 +1,11 @@
 ---
-title: "Case Study: Friday the 13th Effect"
-output: html_notebook
+title: "Case study: Friday the 13th effect"
 ---
 
-<!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License. -->
+<!-- 
+This file Creative Commons Attribution 4.0 International License. 
+See details at https://github.com/hadley/data-science-in-tidyverse 
+-->
 
 ```{r setup}
 library(fivethirtyeight)

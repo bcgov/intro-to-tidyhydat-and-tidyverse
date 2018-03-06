@@ -1,6 +1,11 @@
 ---
-title: "R Notebook"
+title: "Getting started"
 ---
+
+<!-- 
+This file Creative Commons Attribution 4.0 International License. 
+See details at https://github.com/hadley/data-science-in-tidyverse 
+-->
 
 ```{r setup}
 library(tidyverse)
