@@ -20,7 +20,7 @@ Reproduce this figure from fivethirtyeight's article [*Some People Are Too Super
 
 ## Data
 
-In the `fivethiryeight` package there are two datasets containing birth data, but for now let's just work with one, `US_births_1994_2003`.  Note that since we have data from 1994-2003, our results may differ somewhat from the figure based on 1994-2014.
+In the fivethiryeight package there are two datasets containing birth data, but for now let's just work with one, `US_births_1994_2003`.  Note that since we have data from 1994-2003, our results may differ somewhat from the figure based on 1994-2014.
 
 ## Your Turn 1 
 
@@ -47,6 +47,14 @@ US_births_1994_2003 %>%
     geom_line()
 ```
 Strong weekly pattern accounts for most variation.
+
+```{r}
+US_births_1994_2003 %>%
+  filter(year == 1994) %>%
+  ggplot(aes(x = date, y = births)) +
+  geom_line(aes(colour = lubridate::wday(date, label = TRUE)))
+```
+
 
 ## Strategy
 
@@ -184,5 +192,5 @@ US_births_1994_2003 %>%
 
 ## Takeaways
 
-The power of the tidyverse comes from being able to easily combine functions that do simple things well.  
+The power of the tidyverse comes from being able to easily combine functions that do one thing well: you solve complex problems by stringing together simple pieces.
 
