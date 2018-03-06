@@ -22,12 +22,16 @@ What relationship do you expect to see between engine size (displ) and highway f
 
 ## Your Turn 1
 
-Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
+Type in the code from the slide, and run it to make a graph. Pay strict attention to spelling, capitalization, and parentheses.
+
+I strongly recommend typing it, even though copying and pasting is easier! Re-typing it will help your fingers learn the patterns you'll need to apply to your own data analyses.
 
 ```{r}
 
 
 ```
+
+Remember to raise a post-it if you get stuck, and then once you're done!
 
 ## Your Turn 2
 
@@ -40,7 +44,7 @@ ggplot(data = mpg) +
 
 ## Your Turn 3
 
-Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
+Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Guess!
 
 ```{r}
 ggplot(data = mpg) +
@@ -94,7 +98,7 @@ getwd()
 
 ## Your Turn 9
 
-Save the last plot and then locate it in the files pane.
+Save the last plot and then locate it in the files pane. Next find it on your desktop.
 
 ```{r}
 
