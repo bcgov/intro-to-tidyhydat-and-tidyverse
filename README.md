@@ -30,4 +30,4 @@ To get back to this project later, double-click on "data-science-in-the-tidyvers
 
 ## Acknowledgements
 
-Thanks to [Charlotte Wickham](http://www.cwick.co.nz) for creating this [course](https://github.com/cwickham/data-science-in-tidyverse)!
+I have forked this repo from [Charlotte Wickham](https://github.com/cwickham/data-science-in-tidyverse), who forked it from [RStudio](https://github.com/rstudio/master-the-tidyverse). Thanks to [Charlotte](http://cwick.co.nz) and [Garrett](https://github.com/garrettgman) for creating the slides and accompanying materials!
