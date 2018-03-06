@@ -114,12 +114,12 @@ table2
 
 # Take Aways
 
-Data comes in many formats but R prefers just one: _tidy data_.
+Data comes in many formats but the tidyverse prefers just one: _tidy data_.
 
 A data set is tidy if and only if:
 
 1. Every variable is in its own column
 2. Every observation is in its own row
-3. Every value is in its own cell (which follows from the above)
+3. Every value is in its own cell
 
 What is a variable and an observation may depend on your immediate goal.
