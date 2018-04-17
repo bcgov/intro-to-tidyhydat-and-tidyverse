@@ -1,23 +1,34 @@
-# Exploring the tidyverse
+<div id="devex-badge"><a rel="Exploration" href="https://github.com/BCDevExchange/docs/blob/master/discussion/projectstates.md"><img alt="Being designed and built, but in the lab. May change, disappear, or be buggy." style="border-width:0" src="https://assets.bcdevexchange.org/images/badges/exploration.svg" title="Being designed and built, but in the lab. May change, disappear, or be buggy." /></a></div>
 
-This is the repo for *"Exploring the tidyverse"* taught at [NICAR](https://www.ire.org/conferences/nicar18/hands-on-training/) in March 2018.
+# Introduction to R and the tidyverse in Hydrology
 
-This is a one-day hands-on workshop based on the book [R for Data Science](http://r4ds.had.co.nz/). This workshop is designed for people who are familiar with R and want to learn how to achieve their data analysis goals the "tidy" way. You will learn how to visualize, transform, and model data in R and work with date-times, character strings, and untidy data formats. Along the way, you will learn and use many packages from the tidyverse including ggplot2, dplyr, tidyr, readr, purrr, tibble, stringr, lubridate, and forcats.
+This is the repo for *Introduction to R and the tidyverse in Hydrology* to be delivered at the [Canadian Water Resources Association](https://conference.cwra.org/) 2018 conference in Victoria, British Columbia on May 28, 2018.
 
-(There are two days worth of content here, I'll figure out what figure out what half to cover after talking to you all)
+This is a one-day hands-on workshop based on the book [R for Data Science](http://r4ds.had.co.nz/). This workshop is intended as an introduction to R for beginners. In this workshop you will learn how to:
+
+- Load data into R
+- Conduct a variety basic data tidying steps
+- Generate high quality plots in R
+- Use the R package tidyhydat to access realtime and historical Water Survey of Canada data directly from R
+- Understand where and how to seek help for R
+- Take away your R recipes for future analysis
+
+You will learn how to visualize, transform, and model data in R and work with date-times, character strings, and untidy data formats. Along the way, you will learn and use several packages from the tidyverse including ggplot2, dplyr, tidyr, and purrr. In addition, we will make use of the tidyhydat package, which imports and tidies [Water Survey of Canada](https://wateroffice.ec.gc.ca/index_e.html) hydrometric data into R.
+
+
 
 ## Software requirements
 
 You'll need the following packages:
 
 ```R
-install.packages(c("tidyverse", "fivethirtyeight", "gapminder", "rmarkdown", "usethis"))
+install.packages(c("tidyverse", "tidyhydat", "usethis"))
 ```
 
 Then you can grab a local copy of all the slides, code, data, and cheatsheets with:
 
 ```R
-usethis::use_course("http://bit.ly/2Frcaia")
+usethis::use_course("https://github.com/bcgov/data-science-in-tidyverse")
 ```
 
 To get back to this project later, double-click on "data-science-in-the-tidyverse.Rproj".
@@ -30,4 +41,4 @@ To get back to this project later, double-click on "data-science-in-the-tidyvers
 
 ## Acknowledgements
 
-I have forked this repo from [Charlotte Wickham](https://github.com/cwickham/data-science-in-tidyverse), who forked it from [RStudio](https://github.com/rstudio/master-the-tidyverse). Thanks to [Charlotte](http://cwick.co.nz) and [Garrett](https://github.com/garrettgman) for creating the slides and accompanying materials!
+I have forked this repo from [Hadley Wickham](https://github.com/hadley/data-science-in-tidyverse) who in turn forked it from [Charlotte Wickham](https://github.com/cwickham/data-science-in-tidyverse), who forked it from [RStudio](https://github.com/rstudio/master-the-tidyverse). Thanks to [Hadley](http://hadley.nz/), [Charlotte](http://cwick.co.nz) and [Garrett](https://github.com/garrettgman) for creating the slides and accompanying materials!
