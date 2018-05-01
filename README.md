@@ -6,6 +6,7 @@ This is the repo for *Introduction to R and the tidyverse in Hydrology* to be de
 
 This is a 4 hour hands-on workshop that leans heavily on the book [R for Data Science](http://r4ds.had.co.nz/) and on the [tidyhydat](https://CRAN.R-project.org/package=tidyhydat) package. This workshop is intended as an introduction for people interested in hydrological analysis and who would like to try using R. In this workshop you will learn how to:
 
+- Recognize basic elements of the R programming language
 - Load data into R
 - Conduct a variety basic data tidying steps
 - Use the R package tidyhydat to access realtime and historical Water Survey of Canada data directly from R

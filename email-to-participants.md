@@ -1,28 +1,9 @@
 *(This will be sent to registered particpants by email, but I'm also posting here as a convenient place to field any questions/issues.)*
 
-Hello,
-
-I'm excited to meet you all next week in "Data Science in the tidyverse"!
-
-The workshop starts Weds Jan 31st at 9am in Seaport H, but you may want to arrive a little before 9am to get set up.  The TAs and I will be there to help you if you need it. 
 
 **What should you bring?**
 
-A **laptop** that can access the internet (wifi will be available) and your **power cable**.
 
-You'll be using [RStudio Cloud](https://rstudio.cloud/), so on the day of the workshop (all going well), you shouldn't need anything else.  
-
-However, as a backup (e.g. in case of wifi issues), **you should also have**:
-
-* R and RStudio installed locally,
-
-* the following packages:
-    ```    
-    install.packages(c("tidyverse", "fivethirtyeight",
-      "gapminder", "rmarkdown"))
-    ```
-    
-* and the materials as a .ZIP from https://github.com/cwickham/data-science-in-tidyverse/archive/master.zip
 
 **Is this class for me?**
 
