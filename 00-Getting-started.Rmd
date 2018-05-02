@@ -4,11 +4,12 @@ title: "Getting started"
 
 <!-- 
 This file Creative Commons Attribution 4.0 International License. 
-See details at https://github.com/hadley/data-science-in-tidyverse 
+See details at https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse
 -->
 
 ```{r setup}
 library(tidyverse)
+library(tidyhydat)
 ```
 
 ## R notebooks
@@ -20,8 +21,10 @@ R code goes in **code chunks**, denoted by three backticks. Try executing this c
 __Your turn__: Run the code in this block.
 
 ```{r}
-ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy))
+fraser_flows <- hy_daily_flows(station_number = "08MF005")
+
+ggplot(data = fraser_flows) +
+  geom_point(mapping = aes(x = Date, y = Value))
 ```
 
 Add a new chunk by clicking the *Insert* button on the toolbar, then selecting *R* or by pressing  *Ctrl+Alt+I* (Windows) or *Cmd+Option+I* (Mac).
