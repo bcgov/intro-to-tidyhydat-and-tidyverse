@@ -22,11 +22,20 @@ If you have any other questions, feel free to email me.
 **Packages to install before** arriving:
 Enter these four lines of code and paste the output in an email to me (It should say [1] TRUE TRUE TRUE):
 
-pkgs <- c("tidyverse","tidyhydat","rmarkdown")
+```
 .libPaths()
+
+pkgs <- c("tidyverse","tidyhydat","rmarkdown","xtable")
 install.packages(pkgs)
-pkgs %in% rownames(installed.packages())
-download_hydat()
+install_success <- pkgs %in% rownames(installed.packages())
+
+if(length(which(!install_success) > 0)){
+
+}
+
+
+tidyhydat::download_hydat()
+```
 
 
 
