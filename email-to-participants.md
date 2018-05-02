@@ -25,16 +25,18 @@ Enter these four lines of code and paste the output in an email to me (It should
 ```
 .libPaths()
 
-pkgs <- c("tidyverse","tidyhydat","rmarkdown","xtable")
+pkgs <- c("tidyverse","tidyhydat","rmarkdown")
 install.packages(pkgs)
 install_success <- pkgs %in% rownames(installed.packages())
 
-if(length(which(!install_success) > 0)){
-
+if(any(!install_success)){
+  miss_pkgs <- pkgs[which(!install_success)]
+  cat("The following packages were not successfully installed:", paste0(miss_pkgs, collapse = ", "))
 }
 
 
-tidyhydat::download_hydat()
+did_it_work <- tidyhydat::download_hydat()
+if(isTRUE(!did_it_work)) cat("HYDAT did not download successfully")
 ```
 
 
