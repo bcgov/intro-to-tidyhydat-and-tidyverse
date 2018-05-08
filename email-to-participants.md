@@ -25,6 +25,7 @@ https://www.rstudio.com/products/rstudio/download/#download
 
 Open R and paste the following code into the blinking console:
     ```
+    
     .libPaths()
     
     pkgs <- c("tidyverse","tidyhydat","rmarkdown","usethis")
