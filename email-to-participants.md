@@ -40,6 +40,7 @@ Open R and paste the following code into the blinking console:
     
     did_it_work <- tidyhydat::download_hydat()
     if(isTRUE(!did_it_work)) cat("HYDAT did not download successfully")
+    
     ```
 
 This code will take about 10 to fifteen minutes to run.
