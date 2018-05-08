@@ -1,4 +1,4 @@
-*(This will be sent to registered particpants by email, but I'm also posting here as a convenient place to field any questions/issues.)*
+*(This will be sent to registered participants by email, but I'm also posting here as a convenient place to field any questions/issues.)*
 
 
 **Is this class for me?**
