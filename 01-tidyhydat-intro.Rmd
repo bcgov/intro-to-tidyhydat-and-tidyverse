@@ -1,0 +1,57 @@
+---
+title: "tidyhydat intro"
+---
+
+<!-- 
+This file Creative Commons Attribution 4.0 International License. 
+See details at https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse
+-->
+
+```{r setup}
+library(tidyverse)
+library(tidyhydat)
+```
+
+
+## Your turn 1
+Extract daily flow data for two stations and give each a unique name
+
+```{r}
+peace <- hy_daily_flows(station_number = "07EF001")
+
+niagara <- hy_daily_flows(station_number = "02HA013")
+```
+
+In the environment pane, click `niagara` and `peace` to view each object. `hy_daily_flows()` creates a ***data.frame object***
+
+## Your turn 2
+In R, you can use `c()` to *combine* other objects or values. 
+
+```{r, create_vector}
+sams_vector <- c("this","is","my","vector")
+
+sams_vector2 <- c(1, 4, 5, 6)
+```
+
+Station numbers can be supplied directly to the function like this:
+```{r}
+hy_daily_flows(station_number = c("07EF001","02HA013"))
+```
+
+Or they can be created initially as a separate vector which is supplied to the function:
+```{r}
+## Your turn
+```
+
+To find all the functions in a package we can input this line:
+```{r, eval = FALSE}
+help(package = "tidyhydat")
+```
+
+To seek out help for an individual function type `?function_name`. For example:
+```{r, eval = FALSE}
+?hy_daily_levels
+```
+
+
+
