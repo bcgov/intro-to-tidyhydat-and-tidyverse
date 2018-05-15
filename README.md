@@ -45,4 +45,4 @@ To get back to this project later, double-click on "data-science-in-the-tidyvers
 
 ## Acknowledgements
 
-I have forked this repo from [Hadley Wickham](https://github.com/hadley/data-science-in-tidyverse) who in turn forked it from [Charlotte Wickham](https://github.com/cwickham/data-science-in-tidyverse), who forked it from [RStudio](https://github.com/rstudio/master-the-tidyverse). Thanks to [Hadley](http://hadley.nz/), [Charlotte](http://cwick.co.nz) and [Garrett](https://github.com/garrettgman) for creating the slides and accompanying materials!
+I have forked this repo from [Hadley Wickham](https://github.com/hadley/data-science-in-tidyverse) who in turn forked it from [Charlotte Wickham](https://github.com/cwickham/data-science-in-tidyverse), who forked it from [RStudio](https://github.com/rstudio/master-the-tidyverse). The feel, look and flow of the material in this workshop was originally created by these authors. My main contribution was adapt the examples to hydrologically based data. Thanks to [Hadley](http://hadley.nz/), [Charlotte](http://cwick.co.nz) and [Garrett](https://github.com/garrettgman) for creating the slides and accompanying materials!
