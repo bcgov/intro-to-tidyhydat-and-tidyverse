@@ -19,9 +19,13 @@ You will learn how to visualize and transform untidy data formats. Along the way
 
 
 ## Software requirements
-You will need a working installation of R available from here:
+You will need a working installation of R and RStudio available from here:
 
+Install R from here:
 https://cloud.r-project.org/
+
+Install RStudio from here:
+https://www.rstudio.com/products/rstudio/download/#download
 
 You'll need the following packages:
 
@@ -29,19 +33,19 @@ You'll need the following packages:
 install.packages(c("tidyverse", "tidyhydat", "usethis"))
 ```
 
-Then you can grab a local copy of all the slides, code, data, and cheatsheets with:
+Then you can grab a local copy of all the slides, code and data:
 
 ```R
-usethis::use_course("https://github.com/bcgov/data-science-in-tidyverse")
+usethis::use_course("https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse")
 ```
 
-To get back to this project later, double-click on "data-science-in-the-tidyverse.Rproj".
+To get back to this project later, double-click on "intro-to-tidyhydat-and-tidyverse.Rproj".
 
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">*Data Science in the tidyverse*</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cwickham/data-science-in-the-tidyverse" property="cc:attributionName" rel="cc:attributionURL">Charlotte Wickham</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/rstudio/master-the-tidyverse" rel="dct:source">https://github.com/rstudio/master-the-tidyverse</a>.
+<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Original repo *Data Science in the tidyverse*</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/cwickham/data-science-in-the-tidyverse" property="cc:attributionName" rel="cc:attributionURL">Charlotte Wickham</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/rstudio/master-the-tidyverse" rel="dct:source">https://github.com/rstudio/master-the-tidyverse</a>.
 
 ## Acknowledgements
 
