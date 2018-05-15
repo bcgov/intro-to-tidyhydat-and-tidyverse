@@ -28,62 +28,43 @@ filter(data_range, DATA_TYPE == "Q")
 
 Use the logical operators to show:
 
-The data for United States
+Stations that begun operation before and including the year 1900
 ```{r}
-filter(gapminder)
+filter(data_range)
 ```
 
-All data for countries in Oceania
+Stations that are not discharge stations (i.e. "Q")
 ```{r}
-filter(gapminder)
+filter(data_range)
 ```
 
-Rows where the life expectancy is greater than 82
+Stations that have more than 100 years of data
 ```{r}
-filter(gapminder)
+filter(data_range)
 ```
 
-## Your Turn 2
+## Your Turn 
 
-Use Boolean operators to alter the code below to return only the rows that contain:
+Use Boolean operators to return only the rows that contain:
 
-* United States before 1970
-
-```{r}
-filter(gapminder, country == "New Zealand", year > 2000)
-```
-
-*  Countries where life expectancy in 2007 is below 50
+* Find stations that are level ("H") and have more than 80 years record
 
 ```{r}
-filter(gapminder, country == "New Zealand", year > 2000)
+filter(data_range)
 ```
 
-* Records for any of "New Zealand", "Canada" or "United States"
+*  Find stations that start before 1890 or after 2016
 
 ```{r}
-filter(gapminder, country == "New Zealand", year > 2000)
+filter(data_range)
 ```
 
-## Your Turn 3
-
-Use `filter()` to get the records for the US, then plot the life expectancy over time.
+* These stations in one data.frame 08KA009, 05JA005, 06AC006 (hint look at %in%)
 
 ```{r}
-gapminder
+filter(data_range)
 ```
 
-## Your Turn 4
-
-Find the records with the smallest population.
-```{r}
-
-```
-
-Find the records with the largest GDP per capita.
-```{r}
-
-```
 
 ## Quiz 
 
@@ -97,17 +78,17 @@ Which of the following functions are vectorized?
 
 You might try these:
 ```{r}
-gapminder %>% 
+data_range %>% 
   mutate(size = ifelse(pop < 10e06, "small", "large"))
 ```
 
 ```{r, error = TRUE}
-gapminder %>% 
+data_range %>% 
   mutate(diff_pop = diff(pop))
 ```
 
 ```{r}
-gapminder %>% 
+data_range %>% 
   mutate(total_pop = sum(as.numeric(pop)))
 ```
 
@@ -120,7 +101,7 @@ Alter the code to add a `prev_lifeExp` column that contains the life expectancy 
 **Challenge**: Why isn't this quite the 'life expectency five years ago'?
 
 ```{r}
-gapminder %>%
+data_range %>%
   mutate()
 ```
 
@@ -133,7 +114,7 @@ Use summarise() to compute three statistics about the data:
 * The number of countries represented in the data (Hint: use cheatsheet)
 
 ```{r}
-gapminder 
+data_range 
 ```
 
 ## Your Turn 7
@@ -146,7 +127,7 @@ Then use summarise() and summary functions to find:
 2. The median life expectancy
 
 ```{r}
-gapminder 
+data_range 
 ```
 
 ## Your Turn 8
@@ -154,7 +135,7 @@ gapminder
 Find the median life expectancy by continent in 2007.
 
 ```{r}
-gapminder %>%
+data_range %>%
   filter(year == 2007)
 ```
 
@@ -173,13 +154,13 @@ Find the country with biggest jump in life expectancy (between any two consecuti
 
 ## Your Turn 11
 
-Use `left_join()` to add the country codes in `country_codes` to the gapminder data.
+Use `left_join()` to add the country codes in `country_codes` to the data_range data.
 
 ```{r}
 country_codes
 ```
 
-**Challenge**: Which codes in country_codes have no matches in gapminder?
+**Challenge**: Which codes in country_codes have no matches in data_range?
 
 ```{r}
 
