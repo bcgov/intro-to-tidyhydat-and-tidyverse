@@ -36,7 +36,7 @@ install.packages(c("tidyverse", "tidyhydat", "usethis", "rmarkdown"))
 Then you can grab a local copy of all the slides, code and data:
 
 ```R
-usethis::use_course("https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse")
+download.file("https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse/archive/master.zip", "cwra-workshop.zip")
 ```
 
 To get back to this project later, double-click on "intro-to-tidyhydat-and-tidyverse.Rproj".
