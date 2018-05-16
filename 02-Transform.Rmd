@@ -12,7 +12,8 @@ library(tidyverse)
 library(tidyhydat)
 ```
 
-## hy_stn_data_range
+## hy_stn_data_range()
+When `STATION_NUMBER` and `PROV_TERR_STATE_LOC` is missing all stations in Canada are returned. 
 
 ```{r}
 data_range <- hy_stn_data_range()
@@ -59,78 +60,115 @@ filter(data_range)
 filter(data_range)
 ```
 
-* These stations in one data.frame 08KA009, 05JA005, 06AC006 (hint look at %in%)
+* These stations in one data.frame 08KA009, 05JA005, 06AC006 (hint look at `%in%`)
 
 ```{r}
 filter(data_range)
 ```
 
+## pull()
+`pull()` is a very simple function but as we will see it will help us feed the station numbers we want to the data that we need.
 
-## Quiz 
-
-A function that returns a vector the same length as the input is called **vectorized**.
-
-Which of the following functions are vectorized?
-
-  * `ifelse()`
-  * `diff()`
-  * `sum()`
-
-You might try these:
+### Your turn
 ```{r}
-data_range %>% 
-  mutate(size = ifelse(pop < 10e06, "small", "large"))
+##YEAR_FROM
+pull(data_range)
+
+##STATION_NUMBER
+pull(data_range)
 ```
 
-```{r, error = TRUE}
-data_range %>% 
-  mutate(diff_pop = diff(pop))
-```
+## Pipe `%>%` 
 
+These do the same thing. Try it:
 ```{r}
-data_range %>% 
-  mutate(total_pop = sum(as.numeric(pop)))
+filter(data_range, DATA_TYPE == "Q")
+data_range %>% filter(DATA_TYPE == "Q")
 ```
 
-## Your Turn 5
-
-Alter the code to add a `prev_lifeExp` column that contains the life expectancy from the previous record.
-
-(Hint: use cheatsheet, you want to offset elements by one)
-
-**Challenge**: Why isn't this quite the 'life expectency five years ago'?
+## mutate()
+```{r}
+hy_monthly_flows("08MF005") %>% mutate(Value_cfs = Value = 0.0167)
+```
 
 ```{r}
-data_range %>%
-  mutate()
+x <- 1:10
+ifelse(x > 5, "large", "small")
 ```
 
-## Your Turn 6
+### Your turn 
+```{r}
+hy_monthly_flows("08MF005") %>% 
+  mutate(category = ifelse(Value > 500, "Large", "Small"))
+```
 
-Use summarise() to compute three statistics about the data:
+
+First we need some data to work with:
+```{r}
+annual_gt_100 <- hy_stn_data_range() %>% 
+   filter(RECORD_LENGTH > 100, DATA_TYPE == "Q") %>%                                          
+   pull(STATION_NUMBER) %>%
+   hy_annual_stats()
+```
+
+First we can see `mean()` with `na.rm = FALSE`, the default
+
+```{r}
+annual_gt_100 %>%
+  summarise(mean_value = mean(Value))
+```
+
+Note the difference with when we set `na.rm = TRUE`
+```{r}
+annual_gt_100 %>%
+  summarise(mean_value = mean(Value, na.rm = TRUE))
+```
+
+We can also compute more summaries:
+
+```{r}
+annual_gt_100 %>%
+  summarise(mean_value = mean(Value, na.rm = TRUE), 
+            min_value = min(Value, na.rm = TRUE))
+```
+
+### Your turn
+
+Use `summarise()` and the `annual_gt_100 data to compute three statistics about the data:
 
 * The first (minimum) year in the dataset
-* The last (maximum) year in the dataset
-* The number of countries represented in the data (Hint: use cheatsheet)
+* The median mean annual flow (Value) in the dataset
+* The number of stations represented in the data (Hint: use cheatsheet)
 
 ```{r}
-data_range 
+annual_gt_100 %>%
+  summarise()
 ```
 
-## Your Turn 7
+### Your Turn
 
-Extract the rows where `continent == "Africa"` and `year == 2007`. 
-
-Then use summarise() and summary functions to find:
-
-1. The number of unique countries
-2. The median life expectancy
+Compute the summaries as before but only the mean annual flow (i.e. where Sum_stat is MEAN)
 
 ```{r}
-data_range 
+
+
 ```
 
-## Your Turn 8
+## `group_by()`
+
+```{r}
+annual_gt_100 %>% 
+   group_by(STATION_NUMBER)
+```
+
+Summarise by group
+```{r}
+annual_gt_100 %>% 
+   group_by(Year) %>%
+   summarise(num_stations = n_distinct(STATION_NUMBER))
+```
+
+### Your Turn 
 
 Find the median life expectancy by continent in 2007.
 
