@@ -12,6 +12,11 @@ library(tidyverse)
 library(tidyhydat)
 ```
 
+```{r, eval = FALSE}
+help(package = "tidyhydat")
+?hy_daily_levels
+```
+
 
 ## Your turn
 - Try grabbing daily flow data for the following stations: 07EF001, 02HA013
