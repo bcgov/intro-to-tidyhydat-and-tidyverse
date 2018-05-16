@@ -30,7 +30,7 @@ https://www.rstudio.com/products/rstudio/download/#download
 You'll need the following packages:
 
 ```R
-install.packages(c("tidyverse", "tidyhydat", "usethis"))
+install.packages(c("tidyverse", "tidyhydat", "usethis", "rmarkdown"))
 ```
 
 Then you can grab a local copy of all the slides, code and data:
