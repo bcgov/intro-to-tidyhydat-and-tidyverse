@@ -1,0 +1,136 @@
+---
+title: "Working with Dates and Joins"
+---
+
+<!-- 
+This file Creative Commons Attribution 4.0 International License. 
+See details at https://github.com/hadley/data-science-in-tidyverse 
+-->
+
+
+```{r setup}
+library(tidyverse)
+library(lubridate)
+```
+
+# Warm-up / Review
+Remember some of the date types we have seen previously:
+
+```{r}
+fraser_flow <- hy_daily_levels(station_number = "08MF005")
+```
+
+# Times and Dates
+## Your Turn 
+
+For each of the following formats (of the same date), pick the right `ymd()` function to parse them:
+
+```{r}
+"2018 Feb 01"
+"2-1-18"
+"01/02/2018"
+```
+
+### Your Turn 
+
+Fill in the blanks to for `fraser_flows` data:
+
+- Extract the month from date.
+- Extract the year from date.
+- Calculate the mean flow with a measurement for each year/month.
+- Filter the results for only the month of June
+
+
+```{r, error = TRUE}
+fraser_flow %>%
+  mutate(year = _____,
+         month = _____) %>%
+  group_by(_____, ____) %>%
+  summarise(mean_monthly_flow = _____) %>%
+  filter(____)
+```
+
+### realtime data
+```{r}
+mackenzie_realtime <- realtime_dd(station_number = "10LC014")
+
+mackenzie_realtime %>% 
+mutate(seconds = second(Date), 
+       minute = minute(Date),
+       hour = hour(Date)) %>%   
+filter(hour == 7)
+```
+
+or this way
+
+```{r}
+mackenzie_realtime %>% 
+  filter(hour(Date) == 7) 
+```
+
+## filter() and dates
+```{r}
+"01-01-1950"
+
+dmy("01-01-1950")
+```
+
+
+```{r}
+fraser_flow %>%
+  filter(Date >= "01-01-1950")
+```
+
+```{r}
+fraser_flow %>%
+  filter(Date >= dmy("01-01-1950"))
+```
+
+
+# Challenge
+```{r}
+
+```
+
+
+# Take Aways
+
+Dplyr gives you three _general_ functions for manipulating data: `mutate()`, `summarise()`, and `group_by()`. Augment these with functions from the packages below, which focus on specific types of data.
+
+Package   | Data Type
+--------- | --------
+forcats   | factors
+stringr   | strings
+hms       | times
+lubridate | dates and times
+
+# Joins
+
+
+
+## Your Turn 11
+
+Use `left_join()` to add the country codes in `country_codes` to the data_range data.
+
+```{r}
+country_codes
+```
+
+**Challenge**: Which codes in country_codes have no matches in data_range?
+
+```{r}
+
+```
+
+
+***
+
+# Take aways
+
+* Extract cases with `filter()`  
+* Make new variables, with `mutate()`  
+* Make tables of summaries with `summarise()`  
+* Do groupwise operations with `group_by()`
+* Connect operations with `%>%`  
+* Joins are two table verbs
+
