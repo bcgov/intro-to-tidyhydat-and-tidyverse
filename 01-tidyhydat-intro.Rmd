@@ -17,8 +17,8 @@ help(package = "tidyhydat")
 ?hy_daily_levels
 ```
 
-
-## Your turn
+## Steps for tidyhydat
+### Your turn
 - Try grabbing daily flow data for the following stations: 07EF001, 02HA013
 - Give each resulting object a unique name
 ```{r}
@@ -39,7 +39,7 @@ sams_vector <- c("this","is","my","vector")
 sams_vector2 <- c(1, 4, 5, 6)
 ```
 
-## Your turn 2
+### Your turn 
 Station numbers can be supplied directly to the function like this:
 ```{r}
 hy_daily_flows(station_number = c("07EF001","02HA013"))
