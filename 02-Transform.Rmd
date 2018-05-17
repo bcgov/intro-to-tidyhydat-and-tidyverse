@@ -4,16 +4,21 @@ title: "Transform data"
 
 <!-- 
 This file Creative Commons Attribution 4.0 International License. 
-See details at https://github.com/hadley/data-science-in-tidyverse 
+See details at https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse 
 -->
 
-```{r setup}
+```{r packages}
 library(tidyverse)
 library(tidyhydat)
 ```
 
 ## hy_stn_data_range()
-When `STATION_NUMBER` and `PROV_TERR_STATE_LOC` is missing all stations in Canada are returned. 
+- When `STATION_NUMBER` and `PROV_TERR_STATE_LOC` is missing all stations in Canada are returned. 
+
+```{r, eval = FALSE}
+?hy_stn_data_range
+```
+
 
 ```{r}
 data_range <- hy_stn_data_range()
@@ -25,49 +30,63 @@ data_range <- hy_stn_data_range()
 filter(data_range, DATA_TYPE == "Q")
 ```
 
-## Your Turn
+### Your turn
 
 Use the logical operators to show:
 
-Stations that begun operation before and including the year 1900
+- Stations that begun operation before and including the year 1900
 ```{r}
 filter(data_range)
 ```
 
-Stations that are not discharge stations (i.e. "Q")
+- Stations that are not discharge stations (i.e. `"Q"`)
 ```{r}
 filter(data_range)
 ```
 
-Stations that have more than 100 years of data
+- Stations that have more than 100 years of data
 ```{r}
 filter(data_range)
 ```
 
-## Your Turn 
+### Your turn 
 
 Use Boolean operators to return only the rows that contain:
 
-* Find stations that are level ("H") and have more than 80 years record
+- Find stations that are level (`"H"`) and have more than 80 years record
 
 ```{r}
 filter(data_range)
 ```
 
-*  Find stations that start before 1890 or after 2016
+- Find stations that start before 1890 or after 2016
 
 ```{r}
 filter(data_range)
 ```
 
-* These stations in one data.frame 08KA009, 05JA005, 06AC006 (hint look at `%in%`)
+- These stations in one data.frame 08KA009, 05JA005, 06AC006 (hint look at `%in%`)
 
 ```{r}
 filter(data_range)
 ```
+
+### Two common mistakes
+1. Use `=` instead of `==`
+```{r error=TRUE}
+filter(data_range, DATA_TYPE = "Q")
+filter(data_range, DATA_TYPE == "Q")
+```
+
+2. Forgetting quotes
+```{r error=TRUE}
+filter(data_range, DATA_TYPE == Q)
+filter(data_range, DATA_TYPE == "Q")
+```
+
 
 ## pull()
-`pull()` is a very simple function but as we will see it will help us feed the station numbers we want to the data that we need.
+`pull()` is a very simple function but as we will see it will help us feed the station numbers we want to the hydrometric data that we need.
 
 ### Your turn
 ```{r}
@@ -88,7 +107,7 @@ data_range %>% filter(DATA_TYPE == "Q")
 
 ## mutate()
 ```{r}
-hy_monthly_flows("08MF005") %>% mutate(Value_cfs = Value = 0.0167)
+hy_monthly_flows("08MF005") %>% mutate(Value_cfs = Value * 0.0167)
 ```
 
 ```{r}
@@ -99,10 +118,10 @@ ifelse(x > 5, "large", "small")
 ### Your turn 
 ```{r}
 hy_monthly_flows("08MF005") %>% 
-  mutate(category = ifelse(Value > 500, "Large", "Small"))
+  mutate(category = ifelse(Value > 500, "Above 500", "Below 500"))
 ```
 
-
+## summarise()
 First we need some data to work with:
 ```{r}
 annual_gt_100 <- hy_stn_data_range() %>% 
@@ -136,14 +155,15 @@ annual_gt_100 %>%
 
 Use `summarise()` and the `annual_gt_100 data to compute three statistics about the data:
 
-* The first (minimum) year in the dataset
-* The median mean annual flow (Value) in the dataset
-* The number of stations represented in the data (Hint: use cheatsheet)
+- The first (minimum) year in the dataset
+- The median mean annual flow (Value) in the dataset
+- The number of stations represented in the data (Hint: use cheatsheet)
 
 ```{r}
 annual_gt_100 %>%
   summarise()
 ```
+
 
 ### Your Turn
 
@@ -154,14 +174,15 @@ Compute the summaries as before but only the mean annual flow (i.e. where Sum_st
 
 ```
 
-## `group_by()`
+## group_by()
 
 ```{r}
 annual_gt_100 %>% 
-   group_by(STATION_NUMBER)
+   group_by(Year)
 ```
 
-Summarise by group
+Summarise by group - the number of stations that have a record longer than 100 years grouped by year
+
 ```{r}
 annual_gt_100 %>% 
    group_by(Year) %>%
@@ -170,48 +191,20 @@ annual_gt_100 %>%
 
 ### Your Turn 
 
-Find the median life expectancy by continent in 2007.
-
 ```{r}
-data_range %>%
-  filter(year == 2007)
+annual_gt_100
 ```
 
-## Your Turn 9
-
-Brainstorm with your neighbor the sequence of operations to find the country with biggest jump in life expectancy (between any two consecutive records) for each continent.
-
-## Your Turn 10
-
-Find the country with biggest jump in life expectancy (between any two consecutive records) for each continent.
-
+## select
 ```{r}
-
-
-```
-
-## Your Turn 11
-
-Use `left_join()` to add the country codes in `country_codes` to the data_range data.
-
-```{r}
-country_codes
-```
-
-**Challenge**: Which codes in country_codes have no matches in data_range?
-
-```{r}
-
+annual_gt_100 %>% 
+  select(STATION_NUMBER, Value)
 ```
 
 
-***
 
-# Take aways
+## Challenge!
+Extract daily flow information from all active stations on Prince Edward Island.
+```{r}
 
-* Extract cases with `filter()`  
-* Make new variables, with `mutate()`  
-* Make tables of summaries with `summarise()`  
-* Do groupwise operations with `group_by()`
-* Connect operations with `%>%`  
-* Joins are two table verbs
+```
