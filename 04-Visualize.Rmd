@@ -4,31 +4,39 @@ title: "Visualize data"
 
 <!-- 
 This file Creative Commons Attribution 4.0 International License. 
-See details at https://github.com/hadley/data-science-in-tidyverse 
+See details at https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse 
 -->
 
 ```{r setup}
 library(tidyverse)
+library(tidyhydat)
 ```
 
-
+Our data
 ```{r}
-mpg
+pei_stations <- hy_stations(prov_terr_state_loc = "PE") %>%
+  filter(HYD_STATUS == "ACTIVE") %>% 
+  select(STATION_NUMBER, STATION_NAME, DRAINAGE_AREA_GROSS)
+
+pei_mad <- hy_annual_stats(prov_terr_state_loc = "PE") %>%
+  filter(Sum_stat == "MEAN") %>%
+  left_join(pei_stations, by = c("STATION_NUMBER")) %>%
+  select(STATION_NUMBER, STATION_NAME, Parameter, Year, Value, DRAINAGE_AREA_GROSS)
+
+pei_mad
 ```
 
-## Quiz
+## Your turn
 
-What relationship do you expect to see between engine size (displ) and highway fuel efficiency (hwy)?
-
-## Your Turn 1
+What relationship do you expect to see between drainage area (DRAINAGE_AREA_GROSS) and mean annual flow (Value)?
 
 Type in the code from the slide, and run it to make a graph. Pay strict attention to spelling, capitalization, and parentheses.
 
 I strongly recommend typing it, even though copying and pasting is easier! Re-typing it will help your fingers learn the patterns you'll need to apply to your own data analyses.
 
 ```{r}
-
-
+ggplot(data = pei_mad, aes(x = DRAINAGE_AREA_GROSS, y = Value)) +
+  geom_point() 
 ```
 
 Remember to raise a post-it if you get stuck, and then once you're done!

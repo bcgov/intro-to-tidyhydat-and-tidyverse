@@ -4,7 +4,7 @@ title: "Working with Dates and Joins"
 
 <!-- 
 This file Creative Commons Attribution 4.0 International License. 
-See details at https://github.com/hadley/data-science-in-tidyverse 
+See details at https://github.com/bcgov/intro-to-tidyhydat-and-tidyverse 
 -->
 
 
