@@ -11,9 +11,10 @@ See details at https://github.com/hadley/data-science-in-tidyverse
 ```{r setup}
 library(tidyverse)
 library(lubridate)
+library(tidyhydat)
 ```
 
-# Warm-up / Review
+# Review
 Remember some of the date types we have seen previously:
 
 ```{r}
@@ -78,59 +79,49 @@ dmy("01-01-1950")
 
 ```{r}
 fraser_flow %>%
-  filter(Date >= "01-01-1950")
+  filter(Date >= "01-01-1950") %>%
+  summarise(min_date = min(Date))
 ```
 
 ```{r}
 fraser_flow %>%
-  filter(Date >= dmy("01-01-1950"))
+  filter(Date >= dmy("01-01-1950"))%>%
+  summarise(min_date = min(Date))
 ```
 
 
-# Challenge
+## Challenge
+
+Get the province/territory station codes like this:
+```{r}
+unique(allstations$PROV_TERR_STATE_LOC)
+```
+
+Try using the `hy_stations` function for station metadata:
+```{r}
+hy_stations(prov_terr_state_loc = "BC")
+```
+
+
+# Joining data
+```{r}
+bc_stations <- hy_stations(prov_terr_state_loc = "BC") %>%
+  select(STATION_NUMBER, STATION_NAME)
+
+bc_mad <- hy_annual_stats(prov_terr_state_loc = "BC") %>%
+  filter(Sum_stat == "MEAN")
+
+bc_stations %>%
+  left_join(bc_mad, by = c("STATION_NUMBER"))
+```
+
+
+
+## Your turn
+
+Find the Unit flow (Flow per watershed area) for all BC stations for all years
+
 ```{r}
 
 ```
-
-
-# Take Aways
-
-Dplyr gives you three _general_ functions for manipulating data: `mutate()`, `summarise()`, and `group_by()`. Augment these with functions from the packages below, which focus on specific types of data.
-
-Package   | Data Type
---------- | --------
-forcats   | factors
-stringr   | strings
-hms       | times
-lubridate | dates and times
-
-# Joins
-
-
-
-## Your Turn 11
-
-Use `left_join()` to add the country codes in `country_codes` to the data_range data.
-
-```{r}
-country_codes
-```
-
-**Challenge**: Which codes in country_codes have no matches in data_range?
-
-```{r}
-
-```
-
-
-***
-
-# Take aways
-
-* Extract cases with `filter()`  
-* Make new variables, with `mutate()`  
-* Make tables of summaries with `summarise()`  
-* Do groupwise operations with `group_by()`
-* Connect operations with `%>%`  
-* Joins are two table verbs
 

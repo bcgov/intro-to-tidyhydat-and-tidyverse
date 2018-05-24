@@ -33,4 +33,4 @@ You can __Knit__ a document ((click the *knitr* button or press *Ctrl+Shift+K* (
 
 __Your turn__: Knit this document and find the html file that it generates.
 
-__Your turn__: You're all done, so please put up a green post-it!
+__Your turn__: You're all done, so please put up a blue post-it!
