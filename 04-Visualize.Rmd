@@ -12,42 +12,43 @@ library(tidyverse)
 library(tidyhydat)
 ```
 
-Our data
+The number of stations and average length of record by real time and activity status. 
 ```{r}
-pei_stations <- hy_stations(prov_terr_state_loc = "PE") %>%
-  filter(HYD_STATUS == "ACTIVE") %>% 
-  select(STATION_NUMBER, STATION_NAME, DRAINAGE_AREA_GROSS)
+data_range <- hy_stn_data_range() %>%
+  group_by(STATION_NUMBER) %>%
+  summarise(total_record_length = sum(RECORD_LENGTH, na.rm = TRUE))
 
-pei_mad <- hy_annual_stats(prov_terr_state_loc = "PE") %>%
-  filter(Sum_stat == "MEAN") %>%
-  left_join(pei_stations, by = c("STATION_NUMBER")) %>%
-  select(STATION_NUMBER, STATION_NAME, Parameter, Year, Value, DRAINAGE_AREA_GROSS)
+cdn_prov <- c("NB", "PE", "NS", "ON", "QC", "NL", "MB", "AB", "SK", "NU", "NT", "BC", "YT")
 
-pei_mad
+station_meta <- hy_stations() %>%  
+  filter(PROV_TERR_STATE_LOC %in% cdn_prov) %>% 
+  group_by(PROV_TERR_STATE_LOC, HYD_STATUS, REAL_TIME) %>%
+  left_join(data_range, by = c("STATION_NUMBER")) %>% 
+  summarise(number_stns = n(), mean_record_length = mean(total_record_length, na.rm = TRUE))
 ```
 
 ## Your turn
 
-What relationship do you expect to see between drainage area (DRAINAGE_AREA_GROSS) and mean annual flow (Value)?
+What relationships might interest you with this data? 
 
 Type in the code from the slide, and run it to make a graph. Pay strict attention to spelling, capitalization, and parentheses.
 
 I strongly recommend typing it, even though copying and pasting is easier! Re-typing it will help your fingers learn the patterns you'll need to apply to your own data analyses.
 
 ```{r}
-ggplot(data = pei_mad, aes(x = DRAINAGE_AREA_GROSS, y = Value)) +
-  geom_point() 
+ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_length)) +
+  geom_point()
 ```
 
 Remember to raise a post-it if you get stuck, and then once you're done!
 
 ## Your Turn 2
 
-Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
+Add `colour`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
 
 ```{r}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy))
+ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_length)) +
+  geom_point()
 ```
 
 ## Your Turn 3
