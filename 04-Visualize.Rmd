@@ -252,3 +252,22 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   facet_wrap(~REAL_TIME) +
   coord_polar()
 ```
+
+## Just cool stuff
+
+```{r, error=TRUE}
+##install.packages("plotly")
+library(plotly)
+
+library(lubridate)
+horseshoe <- hy_daily_flows(station_number = "08GB014") %>% 
+  mutate(Year = year(Date), yearday = yday(Date))
+
+hydrograph <- ggplot(data = horseshoe, mapping = aes(x = yearday, y = Value, colour = Year)) + 
+  geom_line(mapping = aes(group = Year))
+
+ggplotly(hydrograph)
+
+
+```
+
