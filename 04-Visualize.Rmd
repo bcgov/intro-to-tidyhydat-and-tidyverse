@@ -42,7 +42,7 @@ ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_lengt
 
 Remember to raise a post-it if you get stuck, and then once you're done!
 
-## Your Turn 2
+## Your Turn 
 
 Add `colour`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
 
@@ -51,23 +51,44 @@ ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_lengt
   geom_point()
 ```
 
-## Your Turn 3
+## Your Turn
 
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Guess!
 
+```{r data}
+pei_mean <- hy_annual_stats(prov_terr_state_loc = "PE") %>%
+  filter(Sum_stat == "MEAN", Parameter == "Flow")
+```
+
 ```{r}
-ggplot(data = mpg) +
-  geom_point(mapping = aes(x = class, y = hwy))
+ggplot(data = pei_mean) +
+  geom_point(mapping = aes(x = STATION_NUMBER, y = Value)) +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5))
 ```
 
 ## Your Turn 4
 
-Make a histogram of the `hwy` variable from `mpg`.
+Make a hydrograph of the 08GB014 HORSESHOE RIVER ABOVE LOIS LAKE BC station using the Year and yearday columns created.
 
 ```{r}
-ggplot(data = mpg) 
-
+library(lubridate)
+horseshoe <- hy_daily_flows(station_number = "08GB014") %>% 
+  mutate(Year = year(Date), yearday = yday(Date))
 ```
+
+
+```{r}
+ggplot(data = horseshoe)
+```
+
+### Smoother
+```{r smoother}
+ggplot(data = horseshoe, mapping = aes(x = yearday, y = Value, colour = Year)) + 
+  geom_smooth(mapping = aes(group = Year)))
+```
+
+
+
 
 ## Your Turn 5
 
