@@ -12,7 +12,9 @@ library(tidyverse)
 library(tidyhydat)
 ```
 
-The number of stations and average length of record by real time and activity status. 
+# ggplot2 and tidyhydat
+
+Create a dataframe of the number of stations and average length of record by real time and activity status. 
 ```{r}
 data_range <- hy_stn_data_range() %>%
   group_by(STATION_NUMBER) %>%
@@ -42,6 +44,8 @@ ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_lengt
 
 Remember to raise a post-it if you get stuck, and then once you're done!
 
+# Mappings
+
 ## Your Turn 
 
 Add `colour`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
@@ -51,14 +55,17 @@ ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_lengt
   geom_point()
 ```
 
-## Your Turn
+# Geoms
 
-Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Guess!
+## Your Turn
+Use the mean annual flow from all PEI stations
 
 ```{r data}
 pei_mean <- hy_annual_stats(prov_terr_state_loc = "PE") %>%
   filter(Sum_stat == "MEAN", Parameter == "Flow")
 ```
+
+Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Guess!
 
 ```{r}
 ggplot(data = pei_mean) +
@@ -66,9 +73,14 @@ ggplot(data = pei_mean) +
   theme(axis.text.x  = element_text(angle=90, vjust=0.5))
 ```
 
-## Your Turn 4
+```{r boxplot}
+ggplot(data = pei_mean)
+```
 
-Make a hydrograph of the 08GB014 HORSESHOE RIVER ABOVE LOIS LAKE BC station using the Year and yearday columns created.
+
+## Your Turn
+
+Make a hydrograph of the 08GB014 HORSESHOE RIVER ABOVE LOIS LAKE BC station using the Year and yearday columns created. For this we again need to make use of the lubridate package.
 
 ```{r}
 library(lubridate)
@@ -76,49 +88,42 @@ horseshoe <- hy_daily_flows(station_number = "08GB014") %>%
   mutate(Year = year(Date), yearday = yday(Date))
 ```
 
-
-```{r}
+### Grouping
+```{r group}
 ggplot(data = horseshoe)
 ```
 
-### Smoother
-```{r smoother}
-ggplot(data = horseshoe, mapping = aes(x = yearday, y = Value, colour = Year)) + 
-  geom_smooth(mapping = aes(group = Year)))
+### Facet
+```{r facet}
+ggplot(data = horseshoe)
 ```
 
+## Your Turn
 
-
-
-## Your Turn 5
-
-Make a density plot of `hwy` colored by `class`.
+Make a histogram plot of `horseshoe`.
 
 ```{r}
-ggplot(data = mpg) 
-
+ggplot(data = horseshoe, mapping = aes(x = Value)) +
+  geom_histogram()
 ```
 
-## Your Turn 6
-
-Make a bar chart `class` colored by `class`.
-
-```{r}
-ggplot(data = mpg) 
-
+And then if you would like to modify the bin size, simply supply the bidwidth argument. Experiment with different values:
+```{r histo}
+ggplot(data = horseshoe, mapping = aes(x = Value)) +
+  geom_histogram(binwidth = 1) 
 ```
 
-## Your Turn 7
+And to add your distribution visualization, we can add *rug* marks. Note that the colour aesthetic is only mapped to the `geom_rug` function:
 
-Predict what this code will do. Then run it.
-
-```{r}
-ggplot(mpg) + 
-  geom_point(aes(displ, hwy)) +
-  geom_smooth(aes(displ, hwy))
+```{r rug}
+ggplot(data = horseshoe, mapping = aes(x = Value)) +
+  geom_histogram(binwidth = 1) +
+  geom_rug(mapping = aes(colour = Value))
 ```
 
-## Your Turn 8
+# Saving Graphs
+
+## Your Turn
 
 What does `getwd()` return?
 
@@ -143,4 +148,107 @@ You can use this code template to make thousands of graphs with **ggplot2**.
 ```{r, eval = FALSE}
 ggplot(data = <DATA>) +
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+# What else?
+
+## Basic plot
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS))
+```
+
+## Titles and captions + labs()
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS)) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory")
+```
+
+## Modifying the legend title
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS)) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_discrete(name = "Status")
+```
+
+## Position Adjustments
+
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_discrete(name = "Status")
+```
+
+## Theme - Visual appearance of non-data elements
+
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_discrete(name = "Status") +
+  theme_minimal()
+```
+
+## Scales - Customize color scales, other mappings
+
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  theme_minimal()
+```
+
+## Facets - Subplots that display subsets of the data.
+
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  theme_minimal() +
+  facet_wrap(~REAL_TIME, ncol = 1)
+```
+
+## Coordinate systems
+
+```{r}
+ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_stns)) +
+  geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
+  labs(title = "Hydrometric Stations in Canada",
+       subtitle = "All stations are part of the Water Survey of Canada network",
+       caption = "Figured generated with tidyhydat and ggplot2",
+       y = "Number of stations",
+       x = "Province /Territory") +
+  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  theme_minimal() +
+  facet_wrap(~REAL_TIME) +
+  coord_polar()
 ```
