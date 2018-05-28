@@ -48,7 +48,9 @@ Remember to raise a post-it if you get stuck, and then once you're done!
 
 ## Your Turn 
 
-Add `colour`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
+In the next chunk, modify which data is mapped to x, y, color, size, alpha, and shape aesthetics to your graph. Experiment.
+ - Generate two different examples.
+  
 
 ```{r}
 ggplot(data = station_meta, mapping = aes(x = number_stns, y = mean_record_length)) +
@@ -66,7 +68,7 @@ pei_mean <- hy_annual_stats(prov_terr_state_loc = "PE") %>%
 ```
 
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Guess!
-
+ - `theme` code is to rotate axes labels. 
 ```{r}
 ggplot(data = pei_mean) +
   geom_point(mapping = aes(x = STATION_NUMBER, y = Value)) +
@@ -164,7 +166,7 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS)) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory")
 ```
@@ -175,7 +177,7 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS)) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
   scale_fill_discrete(name = "Status")
@@ -188,7 +190,7 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
   scale_fill_discrete(name = "Status")
@@ -201,7 +203,7 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
   scale_fill_discrete(name = "Status") +
@@ -215,10 +217,10 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
-  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  scale_fill_brewer(name = "Status", palette = "Accent") +
   theme_minimal()
 ```
 
@@ -229,10 +231,10 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
-  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  scale_fill_brewer(name = "Status", palette = "Accent") +
   theme_minimal() +
   facet_wrap(~REAL_TIME, ncol = 1)
 ```
@@ -244,10 +246,10 @@ ggplot(data = station_meta, mapping = aes(x = PROV_TERR_STATE_LOC, y = number_st
   geom_bar(stat = "identity", aes(fill = HYD_STATUS), position = position_dodge()) +
   labs(title = "Hydrometric Stations in Canada",
        subtitle = "All stations are part of the Water Survey of Canada network",
-       caption = "Figured generated with tidyhydat and ggplot2",
+       caption = "Figures generated with tidyhydat and ggplot2",
        y = "Number of stations",
        x = "Province /Territory") +
-  scale_fill_brewer(name = "Status", palette = "Spectral") +
+  scale_fill_brewer(name = "Status", palette = "Accent") +
   theme_minimal() +
   facet_wrap(~REAL_TIME) +
   coord_polar()
