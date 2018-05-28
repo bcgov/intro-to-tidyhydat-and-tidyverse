@@ -19,7 +19,7 @@ library(tidyhydat)
 ?hy_stn_data_range
 ```
 
-
+Create an object from hy_stn_data_range()  called data_range which omit all arguments
 ```{r}
 data_range <- hy_stn_data_range()
 ```
@@ -201,6 +201,11 @@ annual_gt_100 %>%
   select(STATION_NUMBER, Value)
 ```
 
+## arrange
+```{r}
+annual_gt_100 %>% 
+  arrange(Value)
+```
 
 
 ## Challenge!
