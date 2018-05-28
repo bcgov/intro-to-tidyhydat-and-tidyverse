@@ -28,7 +28,7 @@ niagara <- hy_daily_flows(station_number = "02HA013")
 ```
 
 - Inspect the results
-- In the environment pane, click `niagara` and `peace` to view each object. `hy_daily_flows()` creates a ***data.frame object***
+- In the Environment pane, click `niagara` and `peace` to view each object. `hy_daily_flows()` creates a ***data.frame object***
 
 ## Creating vectors
 In R, you can use `c()` to *combine* other objects or values. 
@@ -50,16 +50,14 @@ Create a vector using `c()` called `my_vector`:
 ## Your turn
 ```
 
-Construct a data.frame object with `hy_daily_flows` that includes both stations
+Construct a data.frame object with `hy_daily_flows` that includes any two stations and inspect that dataframe
 ```{r}
 
 ```
 
 
-Inspect that data.frame 
-```{r}
 
-```
+
 
 
 
